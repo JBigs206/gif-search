@@ -1,0 +1,64 @@
+<div class="center-text mt-20">
+	<img class="responsive" src="../../assets/imgs/gif_search_logo.png">
+</div>
+
+<div class="center-text">
+	<button mat-raised-button class="purple-bc white-text m-10" (click)="getRandom()">Random</button>
+	<button mat-raised-button  class="purple-bc white-text m-10" (click)="getTrending()">Trending</button>
+</div>
+
+<div class="center-text">
+	<form [formGroup]="searchForm">
+		<span>
+			<mat-form-field [floatLabel]="'never'" class="example-full-width">
+			    <input matInput type="text" placeholder="Search" formControlName="search">
+			</mat-form-field>
+		</span>
+		<span class="center-text mt-20">
+			<fa-icon class="purple-text pointer s-18" (click)="search()" type="submit" [icon]="['fas', 'search']"></fa-icon>
+	    </span>
+	</form>
+</div>
+
+<div [hidden]="hideSearch">
+	<div>
+		<p class="center-text mt-20 mb-20 s-22">Results</p>
+		<div >
+			<mat-grid-list cols="2" rowHeight="6:4">
+				<mat-list>
+					<mat-grid-tile *ngFor="let search of searchData">
+						<div class="w-400">
+							<img class="gif-image" src="{{search.images.original.url}}" alt="{{search.title}}">
+						</div>
+					</mat-grid-tile>
+				</mat-list>
+			</mat-grid-list>
+		</div>
+		
+	</div>
+</div>
+
+<div [hidden]="hideTrending">
+	<div>
+		<p class="center-text s-22 mt-20 mb-20">Trending</p>
+		<div >
+			<mat-grid-list cols="2" rowHeight="6:4">
+				<mat-list>
+					<mat-grid-tile *ngFor="let trending of trendingData">
+						<div class="w-400">
+							<img class="gif-image" src="{{trending.images.original.url}}" alt="{{trending.title}}">
+						</div>
+					</mat-grid-tile>
+				</mat-list>
+			</mat-grid-list>
+		</div>
+		
+	</div>
+</div>
+
+<div [hidden]="hideRandom">
+		<p class="center-text s-22 mt-20 mb-20">Random</p>
+		<div class="w-400 zero-margin">
+			<img class="gif-image" src="{{randomData.images.original.url}}" alt="{{randomData.title}}">
+		</div>
+</div>
